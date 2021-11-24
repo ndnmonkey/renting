@@ -67,7 +67,6 @@ if __name__ == '__main__':
     # 每周一到周五运行 直到2024-05-30 00:00:00
     scheduler.add_job(cronJob, 'cron', day_of_week='mon-fri', hour=5, minute=30, end_date='2024-05-30')
 
-    print("apscheduler")
 
 
 __doc__ = """
