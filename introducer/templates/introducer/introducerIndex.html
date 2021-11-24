@@ -1,0 +1,85 @@
+{% extends 'introducer/IndexTemplate.html' %} }}
+{% block title %}
+    主页
+{% endblock %}
+
+
+{% block head %}
+
+{% endblock %}
+
+
+{% block main %}
+    <h1>introducerIndex</h1>
+
+
+
+    <video width="320" height="640" controls >
+      <source src="movie.ogg" type="video/ogg">
+      <source src="/media/introducer/profile/video.mp4"  type="video/mp4">
+      <source src="movie.webm" type="video/webm">
+      <object data="movie.mp4" width="320" height="240">
+        <embed width="320" height="240" src="movie.swf">
+      </object>
+    </video>
+
+
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+
+                    {% for contact in page_obj %}
+                        <div class="col-md-4">
+                            <div class="card">
+                                <img class="card-img-top" height="380" width="520" alt="Bootstrap Thumbnail Second" src="https://www.layoutit.com/img/city-q-c-600-200-1.jpg" />                            <div class="card-block">
+                                    <h5 class="card-title">
+                                        {{ contact.housename|upper }}
+                                    </h5>
+                                    <p class="card-text">
+                                        {{ contact.community|upper }}--Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                                    </p>
+                                    <p>
+                                        <a class="btn btn-primary" href="#">订购</a> <a class="btn" href="#">房屋详情</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <nav>
+        <ul class="pagination">
+            <li class="page-item">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; 第1页</a>
+                    <a href="?page={{ page_obj.previous_page_number }}"> 上页 </a>
+                {% endif %}
+            </li>
+            <li class="page-item">
+                <span class="current">
+                    {{ page_obj.number }} / 共{{ page_obj.paginator.num_pages }}
+                </span>
+            </li>
+
+            <li class="page-item">
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}"> 下页 </a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">尾页 &raquo;</a>
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
+
+
+
+
+{% endblock %}

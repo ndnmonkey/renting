@@ -1,0 +1,31 @@
+# -*-coding:utf-8 -*-
+# Author  : zhengyong
+# Time    : 2021/10/3 10:48
+# FileName: urls.py
+import django.contrib.auth.views
+from django.urls import path
+from . import views
+
+
+urlpatterns = [
+    path('register', views.register, name='register'),
+    path('login', views.login, name='login'),
+
+    path('my/myprofile', views.myProfile, name='myprofile'),
+    path('my/updateInfomation', views.updateInfomation, name='updateInfomation'),
+    path('my/logout', views.logout, name='logout'),
+    path('onshelfhouse', views.onShelfHouse, name='onshelfhouse'),
+    path('uploadAvatar', views.uploadAvatar, name='uploadavatar'),
+
+    path('index', views.index, name='index'),
+    path('test', views.test, name='test'),
+    path('index1', views.index1, name='index1'),
+    path('ajax_add', views.ajax_add, name='ajax_add'),
+
+
+    path('recommend', views.recommend, name='recommend'),
+    path('infomation', views.infomation, name='infomation'),
+    path('messages', views.messagesInWeb, name='messages'),
+
+
+]

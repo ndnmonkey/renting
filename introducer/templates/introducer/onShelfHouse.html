@@ -1,0 +1,77 @@
+{% extends 'introducer/IndexTemplate.html' %} }}
+{% block title %}
+    上架房源
+{% endblock %}
+
+
+{% block head %}
+
+{% endblock %}
+
+
+{% block main %}
+    <h3>上架房源</h3>
+    <form>
+        <table class="table table-condensed">
+            <caption>房屋信息1</caption>
+            <th>房屋名-housename</th>
+            <th>所在社区community</th>
+            <th>单价-univalent</th>
+            <th>面积-housearea</th>
+            <th>楼层-floor</th>
+
+            <tr class="success">
+                <td><textarea>describe</textarea></td>
+                <td><textarea>describe</textarea></td>
+                <td><textarea>describe</textarea></td>
+                <td><textarea>describe</textarea></td>
+                <td><textarea>describe</textarea></td>
+            </tr>
+        </table>
+        <br>
+
+        <table class="table table-condensed">
+            <caption>房屋信息2</caption>
+            <th>楼龄-building_age</th>
+            <th>房屋类型-house_type</th>
+            <th>地址-address</th>
+            <th>周边设施-surrounding_facilities</th>
+            <th>周边设施-surrounding_facilities</th>
+
+            <tr class="warning">
+                <td><textarea>describe</textarea></td>
+                <td><textarea>describe</textarea></td>
+                <td><textarea>describe</textarea></td>
+                <td><textarea>describe</textarea></td>
+                <td><textarea>describe</textarea></td>
+
+            </tr>
+        </table>
+        <br>
+        <input type="submit" value="提交资料">
+    </form>
+
+
+    <form method="post" enctype="multipart/form-data" action="">
+        <input type="text" id="translatequery" name="translatequery" value="input">
+        <input type="submit" value="提交" id="ib1">
+    </form>
+    <input type="text" id="i3">
+
+    <script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+        $("#ib1").on("click", function (){
+            $.ajax({
+                url:'{% url 'mymainpage' %}',
+                type:"POST",
+                data:{
+                    "translatequery":$("#translatequery").val()
+                },
+                success: function (data){
+                    $("#i3").val(data.dst)
+                    alert(data.dst)
+                }
+            })
+        })
+    </script>
+{% endblock %}

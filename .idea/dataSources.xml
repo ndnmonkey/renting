@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="renting.sqlite3" uuid="00219a8b-c882-445a-85bb-b0dc508af95d">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:D:\Code\Python\Django\rentingfolder\renting\renting.sqlite3</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="renting" uuid="0db4d33e-e724-4cda-8c65-78a59f5345b3">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:D:\code\python\Django\rentingfolder\renting\renting.sqlite3</jdbc-url>
+    </data-source>
+  </component>
+</project>

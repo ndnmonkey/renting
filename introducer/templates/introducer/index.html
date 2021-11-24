@@ -1,0 +1,47 @@
+{% extends 'introducer/IndexTemplate.html' %} }}
+{% block title %}
+    我的主页
+{% endblock %}
+
+
+{% block head %}
+
+{% endblock %}
+
+
+{% block main %}
+    <h3>我的主页</h3>
+
+
+    <form action="" enctype="multipart/form-data" method="post">
+        <input type="text" id="i1">+
+        <input type="text" id="i2">=
+        <input type="text" id="i3">
+        <input type="button" value="AJAX提交" id="b1">
+    </form>
+
+
+
+
+    <script>
+        $("#b1").on("click", function () {
+            $.ajax({
+                url: "{% url 'ajax_add' %}",
+                type: "POST",
+                data: {
+                    "i1": $("#i1").val(),
+                    "i2": $("#i2").val()
+                },
+                success: function (data) {
+                    alert($("#i1").val())
+                    $("#i3").val(data);
+                }
+            })
+        });
+    </script>
+
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+{% endblock %}

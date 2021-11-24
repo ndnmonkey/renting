@@ -1,0 +1,241 @@
+{% extends 'introducer/IndexTemplate.html' %} }}
+{% block title %}
+    我的主页
+{% endblock %}
+
+
+{% block head %}
+
+{% endblock %}
+
+
+{% block main %}
+    <h3>我的主页</h3>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="alert alert-info" role="alert">
+                  <a href="#" class="alert-link">个人信息</a>
+                </div>
+
+                <form method="post" action="{% url 'updateInfomation' %}" enctype="multipart/form-data">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>
+                                #
+                            </th>
+                            <th>
+                                项目
+                            </th>
+                            <th>
+                                值
+                            </th>
+                            <th>
+                                操作
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                1
+                            </td>
+                            <td>
+                                用户名
+                            </td>
+                            <td>
+                                <input readonly="readonly" value="{{ userResult.username }}" name="updateUsername" class="form-control" >
+                            </td>
+                            <td>
+                                <input  readonly="True" type="submit" value="更新" class="btn btn-default dropdown-toggle" >
+                            </td>
+                        </tr>
+                        <tr class="table-active">
+                            <td>
+                                2
+                            </td>
+                            <td>
+                                电话
+                            </td>
+                            <td>
+                                <input value="{{ userResult.telephone }}" name="updateTelephone" class="form-control" >
+                            </td>
+                            <td>
+                                <input type="submit" value="更新" class="btn btn-default dropdown-toggle" >
+                            </td>
+                        </tr>
+                        <tr class="table-success">
+                            <td>
+                                3
+                            </td>
+                            <td>
+                                个性签名
+                            </td>
+                            <td>
+                                <input  value="{{ userResult.signature }}" name="updateSignature"  class="form-control" >
+                            </td>
+                            <td>
+                                <input type="submit" value="更新" class="btn btn-default dropdown-toggle" >
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
+
+
+                <div class="alert alert-info" role="alert">
+                  <a href="#" class="alert-link">我的发布</a>
+                </div>
+                {% for house in houseResult %}
+{#                    <div class="media">#}
+{##}
+{#                            <img  style="float: left" class="mr-3" alt="Bootstrap Media Preview" src="https://www.layoutit.com/img/sports-q-c-64-64-8.jpg" />#}
+{#                            &ensp;#}
+{#                            <div class="right">#}
+{#                                <h4 class="label label-primary">#}
+{#                                    房屋名称#}
+{#                                </h4>#}
+{#                                {{ house.address }}#}
+{#                            </div>#}
+{#                    </div>#}
+
+
+                      <!-- 左对齐 -->
+                      <div class="media">
+                        <div class="media-left">
+                            <img  style="float: left" class="mr-3" alt="Bootstrap Media Preview" src="https://www.layoutit.com/img/sports-q-c-64-64-8.jpg" />
+                        </div>
+                        <div class="media-body">
+                          <h4 class="media-heading">
+                              {{ house.housename }} | {{ house.community }} | {{ house.univalent }} | {{ house.surrounding_facilities }} | {{ house.house_type }}
+                          </h4>
+                          <p>
+                              {{ house.address }} | {{ house.describe }}
+                          </p>
+                        </div>
+                      </div>
+                      <hr>
+
+
+
+                {% endfor %}
+                <div class="alert alert-info" role="alert">
+                  <a href="#" class="alert-link">我的发布</a>
+                </div>
+
+
+
+
+
+
+
+
+            </div>
+
+
+            <div class="col-md-4">
+               <div>
+                    <ul class="list-group">
+                      <li class="list-group-item list-group-item-success"><a href="#">Dapibus ac facilisis in </a><span class="badge">42</span></li>
+                      <li class="list-group-item list-group-item-info">Cras sit amet nibh libero</li>
+                      <li class="list-group-item list-group-item-warning">Porta ac consectetur ac</li>
+                      <li class="list-group-item list-group-item-danger">Vestibulum at eros</li>
+                    </ul>
+                </div>
+
+
+               <div class="list-group">
+                   <a href="#" class="list-group-item active">
+                        <!-- Single button -->
+                        <!--  <h4 class="list-group-item-heading">个人介绍</h4>  -->
+                        <div class="">
+                            <p class="list-group-item-text"><h5><span class="label label-info">姓名：</span>{{ userResult.username }}</h5> </p>
+                            <p class="list-group-item-text"><h5><span class="label label-info">等级：</span>{{ userResult.user_level }}</h5> </p>
+                            <p class="list-group-item-text"><h5><span class="label label-info">个性签名：</span><br><q>{{ userResult.signature }}</q></h5></p>
+                        </div>
+
+                        <p>
+
+                        </p>
+                  </a>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-4 col-md-6">
+                    <div class="thumbnail">
+                       {% if  isDefaultAvatat %}
+                          <a href="#" class="thumbnail">
+                            <img src="{{ userResult.avatar.url }}" width="130" height="130" alt="...">
+                          </a>
+                        {% else %}
+                           <a href="#" class="thumbnail">
+                                <img alt="Bootstrap Image Preview" width="130" height="130" src="/media/introducer/profile/default.jpg" />
+                           </a>
+                        {% endif %}
+                      <div class="caption">
+                        <h3>{{ userResult.username }}</h3>
+                            <form action="{% url 'uploadavatar' %}" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <input type="file" name="img">
+{#                                <button type="submit">上传</button>#}
+                                <input type="submit" class="btn btn-primary" value="更换头像" role="button">
+                            </form>
+{#                        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>#}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+{#                <div>#}
+{#                    {% if  isDefaultAvatat %}#}
+{#                        <div class="col-xs-6 col-md-3">#}
+{#                            <a href="#" class="thumbnail">#}
+{#                                <img src="{{ userResult.avatar.url }}" width="130" height="130" alt="...">#}
+{#                            </a>#}
+{#                        </div>#}
+{#                    {% else %}#}
+{#                        <div class="col-xs-6 col-md-3">#}
+{#                            <a href="#" class="thumbnail">#}
+{#                                <img alt="Bootstrap Image Preview" width="130" height="130" src="/media/introducer/profile/default.jpg" />#}
+{#                            </a>#}
+{#                        </div>#}
+{#                    {% endif %}#}
+{##}
+{#                    <form action="{% url 'uploadavatar' %}" method="POST" enctype="multipart/form-data">#}
+{#                        {% csrf_token %}#}
+{#                        <input type="file" name="img">#}
+{#                        <button type="submit">上传</button>#}
+{#                    </form>#}
+{#                </div>#}
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <style>
+         .left{
+             width: 80%;
+             border: 1px;
+             display: inline-block;
+             float: left;
+         }
+        .right{
+            width: 80%;
+            border: 1px;
+            display: inline-block;
+        }
+
+
+
+
+
+    </style>
+{% endblock %}
