@@ -197,6 +197,19 @@ def onShelfHouse(request):
         return render(request, 'introducer/onShelfHouses.html')
 
 
+@loginRequiredCheck.check_login
+def houseInfomation(request):
+    """
+
+    :param request:
+    :return:
+    """
+    if request.method == "GET":
+        return render(request, "introducer/houseInfomation.html", locals())
+    elif request.method == "POST":
+        pass
+
+
 def recommend(request):
     """
     推荐页主页

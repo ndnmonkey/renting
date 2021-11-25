@@ -7,7 +7,7 @@ from introducer.models import User, House
 class UserManager(admin.ModelAdmin):
     # 展示字段
     list_display = ['username', 'password', 'is_delete', 'is_valid', 'role_type', 'user_level', 'create_time',
-                    'update_time']
+                    'update_time', 'avatar']
     # 查询字段
     search_fields = ['username']
     # 过滤字段(右侧展示)
