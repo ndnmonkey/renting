@@ -42,8 +42,6 @@ if __name__ == '__main__':
     '''
     scheduler.start()
 
-
-
     # BlockingScheduler：在进程中运行单个任务，调度器是唯一运行的东西
     # 在特定的时间执行一次
     scheduler = BlockingScheduler()
