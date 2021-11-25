@@ -187,9 +187,11 @@ def onShelfHouse(request):
                 house_type=request.POST.get('house_type'),
                 address=request.POST.get('address'),
                 surrounding_facilities=request.POST.get('surrounding_facilities'),
+                housevideo=request.FILES.get('housevideo'),
                 foreigtousersubscriber=User.objects.get(username=request.session.get('username')),
             )
             # addHouseInfo.save()
+            print("video", request.FILES.get('housevideo'))
 
         except Exception as error:
             messages.add_message(request, messages.INFO, 'onShelfHouse, %s' % (error))
@@ -244,7 +246,7 @@ def myProfile(request):
         currentUser = request.session.get('username')
         if currentUser:
             userResult = User.objects.get(username=currentUser)
-            houseResult = House.objects.filter(foreigtousersubscriber=userResult.id)[:5]
+            houseResult = House.objects.filter(foreigtousersubscriber=userResult.id)[:100]
             # print(userResult.avatar.url)
             isDefaultAvatat = 1 if ((str(userResult.avatar.url).split('.'))[-1].lower() in settings.ALLOW_AVTAR_FORMAT) else 0
         return render(request, 'introducer/myProfile.html', locals())

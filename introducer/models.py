@@ -41,6 +41,7 @@ class User(models.Model):
             'signature': self.signature,
             'create_time': str(self.create_time),
             'update_time': str(self.update_time),
+            'avatar': self.avatar,
         })
 
 
@@ -61,6 +62,7 @@ class House(models.Model):
     shelf_status = models.BooleanField('shelf_status', default=True)
     create_time = models.DateTimeField('created time', auto_now_add=True)
     update_time = models.DateTimeField('updated time', auto_now=True)
+    housevideo = models.ImageField(upload_to='media/introducer/housevideos/', default='media/introducer/housevideos/')
 
     # 外键，发布者
     foreigtousersubscriber = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
