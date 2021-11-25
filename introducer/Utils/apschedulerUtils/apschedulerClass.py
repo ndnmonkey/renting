@@ -42,6 +42,8 @@ if __name__ == '__main__':
     '''
     scheduler.start()
 
+
+
     # BlockingScheduler：在进程中运行单个任务，调度器是唯一运行的东西
     # 在特定的时间执行一次
     scheduler = BlockingScheduler()
@@ -66,7 +68,6 @@ if __name__ == '__main__':
     scheduler.add_job(cronJob, 'cron', month='6-8,11-12', day='3rd fri', hour='0-3')
     # 每周一到周五运行 直到2024-05-30 00:00:00
     scheduler.add_job(cronJob, 'cron', day_of_week='mon-fri', hour=5, minute=30, end_date='2024-05-30')
-
 
 
 __doc__ = """
