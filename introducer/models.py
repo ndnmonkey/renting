@@ -50,7 +50,8 @@ class House(models.Model):
     housename = models.CharField('house name', max_length=50, default='House name.')
     community = models.CharField('community', max_length=200, default='The community where the house is located.')
     describe = models.CharField('describe', max_length=500, default='Describe about the house.')
-    univalent = models.DecimalField('univalent', max_digits=15, decimal_places=2)
+    price = models.DecimalField('price', default='1.00', max_digits=15, decimal_places=2)
+
     housearea = models.CharField('housearea', max_length=50, default='The size of the house.')
     address = models.CharField('address', max_length=50, default='Where is the house.')
     floor = models.CharField('floor', max_length=50, default='How many floors is the house on.')
@@ -72,7 +73,7 @@ class House(models.Model):
             'housename': self.housename,
             'community': self.community,
             'describe': self.describe,
-            'univalent': str(self.univalent),
+            'price': str(self.price),
             'housearea': self.housearea,
             'address': self.address,
             'floor': self.floor,

@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('housename', models.CharField(default='Nothing to fill in about the house.', max_length=50, verbose_name='house name')),
                 ('community', models.CharField(default='Nothing to fill in about the house.', max_length=200, verbose_name='community')),
                 ('describe', models.CharField(default='Nothing to fill in about the house.', max_length=500, verbose_name='describe')),
-                ('univalent', models.DecimalField(decimal_places=2, max_digits=15, verbose_name='univalent')),
+                ('price', models.DecimalField(decimal_places=2, max_digits=15, verbose_name='price')),
                 ('housearea', models.CharField(default='Nothing to fill in about the house.', max_length=50, verbose_name='housearea')),
                 ('address', models.CharField(default='Nothing to fill in about the house.', max_length=50, verbose_name='address')),
                 ('floor', models.CharField(default='Nothing to fill in about the house.', max_length=50, verbose_name='floor')),

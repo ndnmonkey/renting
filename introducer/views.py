@@ -180,7 +180,7 @@ def onShelfHouse(request):
             House.objects.create(
                 housename=request.POST.get('housename'),
                 community=request.POST.get('community'),
-                univalent=request.POST.get('univalent'),
+                price=request.POST.get('price'),
                 housearea=request.POST.get('housearea'),
                 floor=request.POST.get('floor'),
                 building_age=request.POST.get('building_age'),
@@ -246,7 +246,7 @@ def myProfile(request):
         currentUser = request.session.get('username')
         if currentUser:
             userResult = User.objects.get(username=currentUser)
-            houseResult = House.objects.filter(foreigtousersubscriber=userResult.id)[:100]
+            houseResult = House.objects.filter(foreigtousersubscriber=userResult.id).order_by('-create_time')[:5]
             # print(userResult.avatar.url)
             isDefaultAvatat = 1 if ((str(userResult.avatar.url).split('.'))[-1].lower() in settings.ALLOW_AVTAR_FORMAT) else 0
         return render(request, 'introducer/myProfile.html', locals())
