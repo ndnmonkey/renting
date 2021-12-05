@@ -16,7 +16,7 @@ urlpatterns = [
     path('my/logout', views.logout, name='logout'),
     path('onshelfhouse', views.onShelfHouse, name='onshelfhouse'),
     path('uploadAvatar', views.uploadAvatar, name='uploadavatar'),
-    path('houseinfomation', views.houseInfomation, name='houseinfomation'),
+    path('houseinfomation/<id>', views.houseInfomation, name='houseinfomation'),
 
     path('index', views.index, name='index'),
     path('test', views.test, name='test'),

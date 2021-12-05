@@ -22,13 +22,14 @@
                             <div class="card">
                                 <img class="card-img-top" height="380" width="520" alt="Bootstrap Thumbnail Second" src="https://www.layoutit.com/img/city-q-c-600-200-1.jpg" />                            <div class="card-block">
                                     <h5 class="card-title">
-                                        {{ contact.housename|upper }}
+                                        {{ contact.housename|upper }} {{ contact.id }}
                                     </h5>
                                     <p class="card-text">
                                         {{ contact.community|upper }}--Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
                                     </p>
                                     <p>
-                                        <a class="btn btn-primary" href="#">订购</a> <a class="btn" href="{% url 'houseinfomation' %} ">房屋详情</a>
+                                        <a class="btn btn-primary" href="#">订购</a>
+                                        <a class="btn" href="{% url 'houseinfomation'  contact.id  %} ">房屋详情</a>
                                     </p>
                                 </div>
                             </div>

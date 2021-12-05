@@ -50,15 +50,14 @@ class House(models.Model):
     housename = models.CharField('house name', max_length=50, default='House name.')
     community = models.CharField('community', max_length=200, default='The community where the house is located.')
     describe = models.CharField('describe', max_length=500, default='Describe about the house.')
-    price = models.DecimalField('price', default='1.00', max_digits=15, decimal_places=2)
+    price = models.DecimalField('price', max_digits=15, decimal_places=2)
 
     housearea = models.CharField('housearea', max_length=50, default='The size of the house.')
     address = models.CharField('address', max_length=50, default='Where is the house.')
     floor = models.CharField('floor', max_length=50, default='How many floors is the house on.')
     building_age = models.CharField('building_age', max_length=5, default='The age of the house.')
     house_type = models.CharField('house_type', max_length=5, default='The type of house.')
-    surrounding_facilities = models.CharField('surrounding_facilities', max_length=500,
-                                              default='Facilities around the house.')
+    surrounding_facilities = models.CharField('surrounding_facilities', max_length=500, default='Facilities around the house.')
     is_delete = models.BooleanField('if deleted', default=False)
     shelf_status = models.BooleanField('shelf_status', default=True)
     create_time = models.DateTimeField('created time', auto_now_add=True)
@@ -67,6 +66,29 @@ class House(models.Model):
 
     # 外键，发布者
     foreigtousersubscriber = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    '''
+    租住类型：合租、整租
+    入住时间
+    '''
+    # 新增字段
+    subway = models.BooleanField('subway', default=False)
+    washer = models.BooleanField('washer', default=False)
+    heater = models.BooleanField('heater', default=False)
+    refrigerator = models.BooleanField('refrigerator', default=False)
+    air_conditioner = models.BooleanField('air_conditioner', default=False)
+    lift = models.BooleanField('lift', default=False)
+    kitchen_room = models.BooleanField('kitchen_room', default=False)
+    deposit = models.BooleanField('deposit', default=False)
+    house_origin_type = models.CharField('rent type', max_length=20, default='', choices=[
+                                                            ('di', 'direct'),
+                                                            ('tr', 'transfer'),
+                                                            ('me', 'mediator'),
+                                                            ('ot', 'others'),
+                                                        ])
+    rent_type = models.CharField('rent type', max_length=20, default='', choices=[
+                                                            ('sh', 'share'),
+                                                            ('fu', 'full'),
+                                                        ])
 
     def __str__(self):
         return json.dumps({

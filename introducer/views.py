@@ -199,14 +199,15 @@ def onShelfHouse(request):
         return render(request, 'introducer/onShelfHouses.html')
 
 
-@loginRequiredCheck.check_login
-def houseInfomation(request):
+# @loginRequiredCheck.check_login
+def houseInfomation(request, id):
     """
 
     :param request:
     :return:
     """
     if request.method == "GET":
+        print("houseInfomation")
         return render(request, "introducer/houseInfomation.html", locals())
     elif request.method == "POST":
         pass
