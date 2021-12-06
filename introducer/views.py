@@ -207,20 +207,11 @@ def houseInfomation(request, id):
     :return:
     """
     if request.method == "GET":
-        currentUser = request.session.get('username')
-        print("GET")
-        if currentUser:
-            userResult = User.objects.get(username=currentUser)
-            houseResult = House.objects.filter(foreigtousersubscriber=userResult.id)  # .order_by('-create_time')
-            return render(request, "introducer/houseInfomation.html", locals())
+        houseResult = House.objects.filter(id=id)
+        return render(request, "introducer/houseInfomation.html", locals())
 
     elif request.method == "POST":
-        currentUser = request.session.get('username')
-        print("post")
-        if currentUser:
-            userResult = User.objects.get(username=currentUser)
-            houseResult = House.objects.filter(foreigtousersubscriber=userResult.id)  # .order_by('-create_time')
-            return render(request, "introducer/houseInfomation.html", locals())
+        pass
 
 
 def recommend(request):
