@@ -11,8 +11,23 @@
 
 {% block main %}
     <h1>房屋详情</h1>
-
-
+    {% for house in houseResult %}
+          <!-- 左对齐 -->
+          <div class="media">
+            <div class="media-left">
+                <img  style="float: left" class="mr-3" alt="Bootstrap Media Preview" src="https://www.layoutit.com/img/sports-q-c-64-64-8.jpg" />
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading">
+                  {{ house.housename }} | {{ house.community }} | {{ house.price }} | {{ house.surrounding_facilities }} | {{ house.house_type }}
+              </h4>
+              <p>
+                  {{ house.address }} | {{ house.describe }}
+              </p>
+            </div>
+          </div>
+          <hr>
+    {% endfor %}
 
 
 {% endblock %}
