@@ -341,15 +341,20 @@ def test(request):
 
 
 def index1(request):
-    return render(request, "introducer/ajaxtest.html")
+    return render(request, "introducer/index.html")
 
 
+@csrf_exempt
 def ajax(request):
     if request.method == 'POST':
-        num1 = request.POST.get("num1", default=1)
-        num2 = request.POST.get("num12", default=5)
-        print("num1:", num1)
-        ret = num1 + num2
-        print(ret)
-        return HttpResponse(ret)
+        print(request.POST)
+        user = request.POST.get('user')
+        print(user)
+        data = {'status': 0,
+                'msg': '请求成功',
+                'data': [11, 22, 33, 44]}
+        return HttpResponse(json.dumps(data))
+    else:
+        return render(request, "introducer/ajaxtest.html")
+
 
