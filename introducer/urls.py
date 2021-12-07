@@ -21,7 +21,7 @@ urlpatterns = [
     path('index', views.index, name='index'),
     path('test', views.test, name='test'),
     path('index1', views.index1, name='index1'),
-    path('ajax_add', views.ajax_add, name='ajax_add'),
+    path('ajax', views.ajax, name='ajax'),
 
 
     path('recommend', views.recommend, name='recommend'),

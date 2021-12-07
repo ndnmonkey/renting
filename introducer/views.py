@@ -341,14 +341,15 @@ def test(request):
 
 
 def index1(request):
-    return render(request, "introducer/index.html")
+    return render(request, "introducer/ajaxtest.html")
 
 
-def ajax_add(request):
+def ajax(request):
     if request.method == 'POST':
-        num1 = request.POST.get("i1")
-        num2 = request.POST.get("i2")
-        ret = int(num1) + int(num2)
+        num1 = request.POST.get("num1", default=1)
+        num2 = request.POST.get("num12", default=5)
+        print("num1:", num1)
+        ret = num1 + num2
         print(ret)
         return HttpResponse(ret)
 

@@ -6,5 +6,45 @@
 </head>
 <body>
     <h1>ajaxtest</h1>
+    <form id = "forminput" action="{% url 'ajax' %}" method="POST" enctype="multipart/form-data">
+        <input type="text" id="num1">+<input type="text" id="num2">=<input type="text" id="sum">
+        <button id="submit">计算</button>
+    </form>
+    <p id="p"></p>
+    <input type="text" id="demo">
+
+    <script>
+
+        $("#forminput").submit(function (e) {
+            e.preventDefault();
+            $.ajax({
+                url:"/introducer/ajax",
+                type: "post",
+                data: $(this).serialize(),
+                success:function (response) {
+                    console.log(response.method);
+                    $("#p").text(response.message);
+                    $("#demo").val(response.message);
+
+                }
+            })
+        })
+
+
+        {#$("#submit").click(function () {#}
+        {#$.ajax({#}
+        {#    url: '{%  url 'ajax' %}',#}
+        {#    type: 'post',#}
+        {#    data: {#}
+        {#        n1: $("#num1").val(),#}
+        {#        n2: $("#num2").val()#}
+        {#    },#}
+        {#    success: function (data) {#}
+        {#        console.log(data)#}
+        {#        $("#sum").val(data)#}
+        {#        },#}
+        {#    })#}
+        {#})#}
+    </script>
 </body>
 </html>
