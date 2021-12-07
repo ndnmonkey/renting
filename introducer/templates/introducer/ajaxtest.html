@@ -9,24 +9,32 @@
     <h1>ajax传递json数据</h1>
     <form action="" method="post" enctype="multipart/form-data">
         姓名<input type="text" name="user" id="user">
-        ajax<input type="submit" class="btn">
+        ajax<input type="submit" class="btn" id="content" >
     </form>
+    <p id="p"></p>
     <script>
             $('.btn').click(function () {
             $.ajax({
                 url: {% url 'ajax' %},
                 type:'post',
                 contentType:'application/json',
+                <!--
                 data:JSON.stringify({ 　　　　　
                     a:1,
                     b:2
-                }),
+                }),  -->
                 success:function (data) {
-                    console.log(data)
-                }
-            })
+                    data = JSON.parse(data);
+                    console.log(data);
+                    console.log(typeof data);
+                    alert(data);
 
-        })
+                    $('p').text(data)
+                    },
+
+
+                })
+            })
     </script>
 
 

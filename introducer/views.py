@@ -15,7 +15,7 @@ from django.core.paginator import Paginator
 from django.http import request, JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from .Utils.registerUtils import hashUtils
 from .Utils.decorators import loginRequiredCheck
 from .Utils.baiduTranslate import translatorUtil
@@ -344,16 +344,17 @@ def index1(request):
     return render(request, "introducer/index.html")
 
 
-@csrf_exempt
+# @csrf_protect
 def ajax(request):
     if request.method == 'POST':
-        print(request.POST)
         user = request.POST.get('user')
         print(user)
         data = {'status': 0,
-                'msg': '请求成功',
-                'data': [11, 22, 33, 44]}
-        return HttpResponse(json.dumps(data))
+                'user': user,
+        }
+        # return HttpResponse(json.dumps(data), content_type="application/json,charset=utf-8")
+        # 使用JsonResponse响应，不需要手动进行序列化，同时也不需要告知类型，在响应除字典以外的数据类型时，需要添加参数safe=False
+        return JsonResponse(json.dumps(data), safe=False)
     else:
         return render(request, "introducer/ajaxtest.html")
 
