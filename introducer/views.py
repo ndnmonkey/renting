@@ -38,9 +38,9 @@ def register(request):
     if request.method == 'GET':
         return render(request, 'introducer/introducerRegister.html')
     elif request.method == 'POST':
-        username = request.POST.get('username')
-        firstPassword = request.POST.get('firstpassword')
-        repeatPassword = request.POST.get('repeatpassword')
+        username = str(request.POST.get('username')).strip()
+        firstPassword = str(request.POST.get('firstpassword'))
+        repeatPassword = str(request.POST.get('repeatpassword'))
         hasUsername = User.objects.filter(username=username)
         # 是否存在该用户,不存在则注册，存在则跳转登录页
         if not hasUsername:
@@ -70,10 +70,10 @@ def login(request):
     if request.method == 'GET':
         return render(request, 'introducer/introducerLogin.html')
     elif request.method == 'POST':
-        # username = str(request.POST.get('username')).strip()
-        # password = str(request.POST.get('password')).strip()
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        username = str(request.POST.get('username')).strip()
+        password = str(request.POST.get('password')).strip()
+        # username = request.POST.get('username')
+        # password = request.POST.get('password')
         remember = request.POST.get('remember')
         hasLoginingUser = User.objects.filter(username=username).exists()
         if hasLoginingUser:
@@ -92,7 +92,7 @@ def login(request):
                 if remember == 'on':
                     request.session['username'] = username
                     request.session.set_expiry(60 * 60 * 24 * 1)
-                return responseWithCookieObj
+                return redirect(reverse('index'))
             else:
                 messages.add_message(request, messages.INFO, 'Password is wrong.')
                 return render(request, 'introducer/introducerLogin.html')
