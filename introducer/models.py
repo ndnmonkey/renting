@@ -18,6 +18,7 @@ from django.db import models
 class User(models.Model):
     """用户信息表"""
     username = models.CharField('username', max_length=30, unique=True)
+    # email = models.EmailField('email', default='renting@rent.com')
     password = models.CharField('password', max_length=32)
     telephone = models.IntegerField('telephone', default='0000')
     is_delete = models.BooleanField('if deleted', default=False)
@@ -27,7 +28,7 @@ class User(models.Model):
     signature = models.CharField('personal signature', max_length=200, default='This is my personal signature in a word!')
     create_time = models.DateTimeField('created time', auto_now_add=True)
     update_time = models.DateTimeField('updated time', auto_now=True)
-    avatar = models.ImageField(upload_to='media/introducer/profile/', default='media/introducer/profile/')
+    avatar = models.ImageField(upload_to='media/introducer/profile/', default='media/introducer/profile/default.jpg')
 
     def __str__(self):
         return json.dumps({
@@ -41,7 +42,7 @@ class User(models.Model):
             'signature': self.signature,
             'create_time': str(self.create_time),
             'update_time': str(self.update_time),
-            'avatar': self.avatar,
+            # 'avatar': self.avatar,
         })
 
 

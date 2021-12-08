@@ -70,6 +70,8 @@ def login(request):
     if request.method == 'GET':
         return render(request, 'introducer/introducerLogin.html')
     elif request.method == 'POST':
+        # username = str(request.POST.get('username')).strip()
+        # password = str(request.POST.get('password')).strip()
         username = request.POST.get('username')
         password = request.POST.get('password')
         remember = request.POST.get('remember')
@@ -348,14 +350,20 @@ def index1(request):
 def ajax(request):
     if request.method == 'POST':
         user = request.POST.get('user')
+        loginUser = User.objects.get(username=user)
+        print(loginUser.password)
+
         print(user)
         data = {'status': 0,
                 'user': user,
         }
-        # return HttpResponse(json.dumps(data), content_type="application/json,charset=utf-8")
+        return HttpResponse(json.dumps(data), content_type="application/json,charset=utf-8")
         # 使用JsonResponse响应，不需要手动进行序列化，同时也不需要告知类型，在响应除字典以外的数据类型时，需要添加参数safe=False
-        return JsonResponse(json.dumps(data), safe=False)
+        # return JsonResponse(json.dumps(data), safe=False)
     else:
+        # username = '中文'
+        # loginUser = User.objects.get(username=username)
+        # print(loginUser)
         return render(request, "introducer/ajaxtest.html")
 
 

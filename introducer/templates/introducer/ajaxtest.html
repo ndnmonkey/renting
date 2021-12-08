@@ -8,16 +8,18 @@
 
     <h1>ajax传递json数据</h1>
     <form action="" method="post" enctype="multipart/form-data">
-        姓名<input type="text" name="user" id="user">
-        ajax<input type="submit" class="btn" id="content" >
+        姓名<input type="text" name="user" id="user" value="中文">
+{#        ajax<input type="submit" class="btn" id="content" >#}
+        <button class="btn" type="submit">Click Me!</button>
     </form>
     <p id="p"></p>
     <script>
             $('.btn').click(function () {
             $.ajax({
-                url: {% url 'ajax' %},
+                 <!--url: {% url 'ajax' %},-->
+                url: "/introducer/ajax",
                 type:'post',
-                contentType:'application/json',
+                contentType:'multipart/form-data',
                 <!--
                 data:JSON.stringify({ 　　　　　
                     a:1,
@@ -28,7 +30,7 @@
                     console.log(data);
                     console.log(typeof data);
                     alert(data);
-
+                    console.error('eeeee')
                     $('p').text(data)
                     },
 
