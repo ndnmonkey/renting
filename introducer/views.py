@@ -230,14 +230,11 @@ def addToHouseOrder(request, houseID):
     """
     if request.method == "GET":
         houseObj = House.objects.get(id=houseID)
-        print(houseObj.id)
-        print(request.session.get('userid'))
         Order.objects.create(
             house_id=houseID,
             subscriber_id=request.session.get('userid'),
             publisher_id=houseObj.id,
         )
-        # Order.save()
         return HttpResponse(houseID)
     elif request.method == "POST":
         pass
