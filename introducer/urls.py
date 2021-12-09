@@ -14,9 +14,11 @@ urlpatterns = [
     path('my/myprofile', views.myProfile, name='myprofile'),
     path('my/updateInfomation', views.updateInfomation, name='updateInfomation'),
     path('my/logout', views.logout, name='logout'),
-    path('onshelfhouse', views.onShelfHouse, name='onshelfhouse'),
     path('uploadAvatar', views.uploadAvatar, name='uploadavatar'),
+
+    path('onshelfhouse', views.onShelfHouse, name='onshelfhouse'),
     path('houseinfomation/<id>', views.houseInfomation, name='houseinfomation'),
+    path('addtohouseorder/<id>', views.addToHouseOrder, name='addtohouseorder'),
 
     path('index', views.index, name='index'),
     path('test', views.test, name='test'),

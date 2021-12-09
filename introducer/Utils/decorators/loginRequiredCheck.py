@@ -12,6 +12,7 @@ from django.urls import reverse
 def check_login(function):
     def wrapper(request, *args, **kwargs):
         if request.session.get('username', False):
+            print('check_login', args)
             return function(request, *args, *kwargs)
         else:
             # 获取用户当前访问的url，并传递给/user/login/

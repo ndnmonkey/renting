@@ -202,9 +202,10 @@ def onShelfHouse(request):
 
 
 # @loginRequiredCheck.check_login
+# 带参数的接口通过第三方登录检查check_login会报错
+# @login_required
 def houseInfomation(request, id):
     """
-
     :param request:
     :return:
     """
@@ -216,10 +217,28 @@ def houseInfomation(request, id):
         pass
 
 
+# @loginRequiredCheck.check_login
+# 带参数的接口通过第三方登录检查check_login会报错
+def addToHouseOrder(request, id):
+    """
+    用户加入房子到订单列表
+    :param request:
+    :param id: houseid
+    :return:
+    """
+    if request.method == "GET":
+        currentUser = request.session['username']
+        print(currentUser, id)
+        houseResult = House.objects.filter(id=id)
+        return HttpResponse(id)
+    elif request.method == "POST":
+        pass
+
+
 def recommend(request):
     """
     推荐页主页
-    :param request:
+    :param request: houseid
     :return:
     """
     if request.method == 'GET':

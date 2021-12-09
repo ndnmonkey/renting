@@ -19,11 +19,13 @@
             </div>
             <div class="media-body">
               <h4 class="media-heading">
-                  {{ house.housename }} | {{ house.community }} | {{ house.price }} | {{ house.surrounding_facilities }} | {{ house.house_type }}
+                  {{ house.id }} | {{ house.housename }} | {{ house.community }} | {{ house.price }} | {{ house.surrounding_facilities }} | {{ house.house_type }}
               </h4>
               <p>
                   {{ house.address }} | {{ house.describe }}
               </p>
+              <a class="btn btn-primary" href="{% url 'addtohouseorder'  house.id  %} ">添加到订单-{{ house.id }}</a>
+
             </div>
           </div>
           <hr>

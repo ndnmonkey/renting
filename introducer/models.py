@@ -111,6 +111,17 @@ class House(models.Model):
         })
 
 
+# class Order(models.Model):
+#     # 房屋id，下单人id，金额，
+#     house_id = models.CharField('house id', default=1, max_length=10)
+#     subscriber_id = models.CharField('subscriber id', default=1, max_length=10)
+#     publisher_id = models.CharField('publisher id', default=2, max_length=15)
+#     publisher_name = models.CharField('publisher name', default='publisher name', max_length=30)
+#     orderStatus = models.CharField('orderStatus', default='0', max_length=10)
+#     create_time = models.DateTimeField('created time', auto_now_add=True)
+#     update_time = models.DateTimeField('updated time', auto_now=True)
+
+
 class Test(models.Model):
     community = models.CharField('community', max_length=200, default='Nothing to fill in about the house.')
 
