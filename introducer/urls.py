@@ -17,8 +17,8 @@ urlpatterns = [
     path('uploadAvatar', views.uploadAvatar, name='uploadavatar'),
 
     path('onshelfhouse', views.onShelfHouse, name='onshelfhouse'),
-    path('houseinfomation/<id>', views.houseInfomation, name='houseinfomation'),
-    path('addtohouseorder/<id>', views.addToHouseOrder, name='addtohouseorder'),
+    path('houseinfomation/<houseID>', views.houseInfomation, name='houseinfomation'),
+    path('addtohouseorder/<houseID>', views.addToHouseOrder, name='addtohouseorder'),
 
     path('index', views.index, name='index'),
     path('test', views.test, name='test'),

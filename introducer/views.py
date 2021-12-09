@@ -19,7 +19,7 @@ from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from .Utils.registerUtils import hashUtils
 from .Utils.decorators import loginRequiredCheck
 from .Utils.baiduTranslate import translatorUtil
-from .models import User, House, Test
+from .models import User, House, Test, Order
 from django.views.generic import ListView
 from introducer.models import House
 
@@ -91,6 +91,7 @@ def login(request):
                 # 2,存储到session
                 if remember == 'on':
                     request.session['username'] = username
+                    request.session['userid'] = loginUser.id
                     request.session.set_expiry(60 * 60 * 24 * 1)
                 return redirect(reverse('index'))
             else:
@@ -204,13 +205,14 @@ def onShelfHouse(request):
 # @loginRequiredCheck.check_login
 # 带参数的接口通过第三方登录检查check_login会报错
 # @login_required
-def houseInfomation(request, id):
+def houseInfomation(request, houseID):
     """
     :param request:
     :return:
     """
     if request.method == "GET":
-        houseResult = House.objects.filter(id=id)
+        houseResult = House.objects.filter(id=houseID)
+
         return render(request, "introducer/houseInfomation.html", locals())
 
     elif request.method == "POST":
@@ -219,7 +221,7 @@ def houseInfomation(request, id):
 
 # @loginRequiredCheck.check_login
 # 带参数的接口通过第三方登录检查check_login会报错
-def addToHouseOrder(request, id):
+def addToHouseOrder(request, houseID):
     """
     用户加入房子到订单列表
     :param request:
@@ -227,10 +229,16 @@ def addToHouseOrder(request, id):
     :return:
     """
     if request.method == "GET":
-        currentUser = request.session['username']
-        print(currentUser, id)
-        houseResult = House.objects.filter(id=id)
-        return HttpResponse(id)
+        houseObj = House.objects.get(id=houseID)
+        print(houseObj.id)
+        print(request.session.get('userid'))
+        Order.objects.create(
+            house_id=houseID,
+            subscriber_id=request.session.get('userid'),
+            publisher_id=houseObj.id,
+        )
+        # Order.save()
+        return HttpResponse(houseID)
     elif request.method == "POST":
         pass
 
