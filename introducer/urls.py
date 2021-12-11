@@ -14,7 +14,8 @@ urlpatterns = [
     path('my/myprofile', views.myProfile, name='myprofile'),
     path('my/updateInfomation', views.updateInfomation, name='updateInfomation'),
     path('my/logout', views.logout, name='logout'),
-    path('uploadAvatar', views.uploadAvatar, name='uploadavatar'),
+    path('my/order', views.myOrder, name='order'),
+    path('my/uploadavatar', views.uploadAvatar, name='uploadavatar'),
 
     path('onshelfhouse', views.onShelfHouse, name='onshelfhouse'),
     path('houseinfomation/<houseID>', views.houseInfomation, name='houseinfomation'),

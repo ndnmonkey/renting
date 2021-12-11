@@ -307,6 +307,15 @@ def updateInfomation(request):
         return render(request, 'introducer/myProfile.html', locals())
 
 
+def myOrder(request):
+    if request.method == 'GET':
+        currentUserId = request.session.get('userid')
+        orderQuerySet = Order.objects.filter(subscriber_id=currentUserId)
+        return render(request, 'introducer/introducerOrder.html', locals())
+    elif request.method == "POST":
+        pass
+
+
 @csrf_exempt
 def uploadAvatar(request):
     """
