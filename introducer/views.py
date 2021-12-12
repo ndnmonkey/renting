@@ -386,7 +386,6 @@ def ajax(request):
         loginUser = User.objects.get(username=user)
         print(loginUser.password)
 
-        print(user)
         data = {'status': 0,
                 'user': user,
         }
