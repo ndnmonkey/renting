@@ -20,17 +20,26 @@
                     {% for contact in page_obj %}
                         <div class="col-md-4">
                             <div class="card">
-                                <img class="card-img-top" height="380" width="520" alt="Bootstrap Thumbnail Second" src="https://www.layoutit.com/img/city-q-c-600-200-1.jpg" />                            <div class="card-block">
-                                    <h5 class="card-title">
-                                        {{ contact.housename|upper }} {{ contact.id }}
-                                    </h5>
-                                    <p class="card-text">
-                                        {{ contact.community|upper }}--Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                                    </p>
-                                    <p>
+                                <video  class="card-img-top" width="320" height="320" controls >
+                                      <source src="movie.ogg" type="video/ogg">
+                                      <source src="/media/media/introducer/housevideos/video.mp4"  type="video/mp4">
+{#                                      <source src="{{ contact.housevideo.url }}"  type="video/mp4">#}
+                                      <source src="movie.webm" type="video/webm">
+                                      <object data="movie.mp4" width="320" height="240">
+                                        <embed width="320" height="240" src="movie.swf">
+                                      </object>
+                                    </video>
+{#                                <img class="card-img-top" height="380" width="550" alt="Bootstrap Thumbnail Second" src="https://www.layoutit.com/img/city-q-c-600-200-1.jpg" />                            <div class="card-block">#}
+                                <h5 class="card-title">
+                                    {{ contact.housename|upper }} {{ contact.id }}
+                                </h5>
+                                <p class="card-text">
+                                    {{ contact.community|upper }}--Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                                </p>
+                                <p>
 {#                                        <a class="btn btn-primary" href="#">订购</a>#}
-                                        <a class="btn btn-primary" href="{% url 'houseinfomation'  contact.id  %} ">房屋详情</a>
-                                    </p>
+                                    <a class="btn btn-primary" href="{% url 'houseinfomation'  contact.id  %} ">房屋详情</a>
+                                </p>
                                 </div>
                             </div>
                         </div>
