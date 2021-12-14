@@ -22,6 +22,7 @@ from .Utils.baiduTranslate import translatorUtil
 from .models import User, House, Test, Order
 from django.views.generic import ListView
 from introducer.models import House
+from . import forms
 
 # Create your views here.
 
@@ -127,19 +128,17 @@ def logout(request):
 
 
 # todo 1
-from . import forms
-
-
 def testForm(request):
     if request.method == 'POST':
         formObj = forms.LoginTestForm(request.POST)
         if formObj.is_valid():
             data = formObj.clean()
+            print(data.get('username'))
             print(data)
             return render(request, 'introducer/index.html', {"form_obj": formObj})
         else:
             error = formObj.errors
-            return render(request, 'introducer/index.html', {"form_obj": formObj, 'error':error})
+            return render(request, 'introducer/index.html', {"form_obj": formObj, 'error': error})
     elif request.method == 'GET':
         formObj = forms.LoginTestForm()
         return render(request, 'introducer/index.html',  {"form_obj": formObj})

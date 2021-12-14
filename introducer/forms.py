@@ -7,8 +7,6 @@
 # Description:
 """
 from django import forms
-from . import models
-from . import models
 
 
 class LoginTestForm(forms.Form):
