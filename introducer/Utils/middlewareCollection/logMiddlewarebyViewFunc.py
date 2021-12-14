@@ -14,6 +14,11 @@ from django.utils.deprecation import MiddlewareMixin
 class CustomerMiddleware(MiddlewareMixin):
     def process_request(self, request):
         # print('1，中间件process_request--')
+        # print(request.get_host)
+        # print(request.path)
+        # print(request.get_full_path())
+        # print(request.is_secure())
+        # print(request.META)
         return None
 
     def process_exception(self, request, exception):

@@ -126,6 +126,25 @@ def logout(request):
             return render(request, 'introducer/introducerLogin.html')
 
 
+# todo 1
+from . import forms
+
+
+def testForm(request):
+    if request.method == 'POST':
+        formObj = forms.LoginTestForm(request.POST)
+        if formObj.is_valid():
+            data = formObj.clean()
+            print(data)
+            return render(request, 'introducer/index.html', {"form_obj": formObj})
+        else:
+            error = formObj.errors
+            return render(request, 'introducer/index.html', {"form_obj": formObj, 'error':error})
+    elif request.method == 'GET':
+        formObj = forms.LoginTestForm()
+        return render(request, 'introducer/index.html',  {"form_obj": formObj})
+
+
 # ----------------------------------------------------
 # 首页及页面功能（上架房源）
 # ----------------------------------------------------
