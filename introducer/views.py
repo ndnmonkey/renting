@@ -73,8 +73,6 @@ def login(request):
     elif request.method == 'POST':
         username = str(request.POST.get('username')).strip()
         password = str(request.POST.get('password')).strip()
-        # username = request.POST.get('username')
-        # password = request.POST.get('password')
         remember = request.POST.get('remember')
         hasLoginingUser = User.objects.filter(username=username).exists()
         if hasLoginingUser:
@@ -130,17 +128,36 @@ def logout(request):
 # todo 1
 def testForm(request):
     if request.method == 'POST':
-        formObj = forms.LoginTestForm(request.POST)
+        formObj = forms.LoginForm(request.POST)
         if formObj.is_valid():
             data = formObj.clean()
-            print(data.get('username'))
-            print(data)
-            return render(request, 'introducer/index.html', {"form_obj": formObj})
+            username = data.get('username')
+            password = data.get('password')
+            chekme = data.get('chekme')
+            hasLoginingUser = User.objects.filter(username=username).exists()
+            if hasLoginingUser:
+                loginUser = User.objects.get(username=username)
+                if loginUser.password == hashUtils.hashEncrptString(password):
+                    # 1,存储到cookie
+                    # reverse函数直接带视图名
+                    reverseObj = reverse('index')
+                    responseWithCookieObj = redirect(reverseObj)
+                    responseWithCookieObj.set_cookie(
+                        key='username',
+                        value=loginUser.username,
+                        max_age=60 * 30,
+                    )
+                    # 2,存储到session
+                    if chekme:
+                        request.session['username'] = username
+                        request.session['userid'] = loginUser.id
+                        request.session.set_expiry(60 * 60 * 24 * 1)
+                    return redirect(reverse('index'))
         else:
             error = formObj.errors
             return render(request, 'introducer/index.html', {"form_obj": formObj, 'error': error})
     elif request.method == 'GET':
-        formObj = forms.LoginTestForm()
+        formObj = forms.LoginForm()
         return render(request, 'introducer/index.html',  {"form_obj": formObj})
 
 

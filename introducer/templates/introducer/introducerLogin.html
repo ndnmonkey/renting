@@ -33,6 +33,26 @@
             <div class="col-md-4">
             </div>
             <div class="col-md-4">
+
+
+
+{#    # novalidate 关闭django form表单自带的一些校验机制，  autocomplete='off' 可以让输入框输入的数据保留下来，在刷新页面的时候不被清空#}
+{#<form action="" method="post" novalidate autocomplete="off">#}
+{#    {% csrf_token %}#}
+{#    <p>#}
+{#        <!--生成 lable 标签-->#}
+{#        {{ form_obj.username.label }}#}
+{#        <!--生成 user 的 input 标签-->#}
+{#        {{ form_obj.username }}#}
+{#        <span style="color: red">{{ form_obj.username.errors.0 }}</span><br>#}
+{#        {{ form_obj.password.label }}#}
+{#        {{ form_obj.password }}#}
+{#        <span style="color: red">{{ form_obj.password.errors.0 }}</span>#}
+{#    </p>#}
+{#    <input type="submit" value="submit">#}
+{#</form>#}
+
+
                 <form role="form" method="post" action="{% url 'login' %}" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="exampleInputEmail1">

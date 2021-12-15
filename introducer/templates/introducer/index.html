@@ -24,19 +24,22 @@
 <form action="" method="post" novalidate autocomplete="off">
     {% csrf_token %}
     <!--1,对象.as_p 生成p标签,里边会自动成成input标签-->
-    {{ form_obj.as_p }}
+{#    {{ form_obj.as_p }}#}
 
 
     <!--2,分开写标签，和1的形式是一样的-->
     <p>
-{#        <!--生成 lable 标签-->#}
-{#        {{ form_obj.username.label }}#}
-{#        <!--生成 user 的 input 标签-->#}
-{#        {{ form_obj.username }}#}
-{#        <span style="color: red">{{ form_obj.username.errors.0 }}</span>#}
-{#        {{ form_obj.password.label }}#}
-{#        {{ form_obj.password }}#}
-{#        <span style="color: red">{{ form_obj.password.errors.0 }}</span>#}
+        <!--生成 lable 标签-->
+        {{ form_obj.username.label }}
+        <!--生成 user 的 input 标签-->
+        {{ form_obj.username }}
+        <span style="color: red">{{ form_obj.username.errors.0 }}</span><br>
+        {{ form_obj.password.label }}
+        {{ form_obj.password }}
+        <span style="color: red">{{ form_obj.password.errors.0 }}</span>
+        <br>
+        {{ form_obj.chekme.label }}
+        {{ form_obj.chekme }}
     </p>
     <input type="submit" value="submit">
 </form>
