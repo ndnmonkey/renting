@@ -1,0 +1,106 @@
+{% extends 'introducer/IndexTemplate.html' %} }}
+{% block title %}
+    我的主页
+{% endblock %}
+
+
+{% block head %}
+
+{% endblock %}
+
+
+{% block main %}
+
+{##}
+{#    # novalidate 关闭django form表单自带的一些校验机制，  autocomplete='off' 可以让输入框输入的数据保留下来，在刷新页面的时候不被清空#}
+{#<form action="" method="post" novalidate autocomplete="off">#}
+{#    {% csrf_token %}#}
+{#    <!--1,对象.as_p 生成p标签,里边会自动成成input标签-->#}
+{#    {{ form_obj.as_p }}#}
+{##}
+{##}
+{#    <!--2,分开写标签，和1的形式是一样的-->#}
+{#    <p>#}
+{#        <!--生成 lable 标签-->#}
+{#        {{ form_obj.username.label }}#}
+{#        <!--生成 user 的 input 标签-->#}
+{#        {{ form_obj.username }}#}
+{#        <span style="color: red">{{ form_obj.username.errors.0 }}</span><br>#}
+{#        {{ form_obj.password.label }}#}
+{#        {{ form_obj.password }}#}
+{#        <span style="color: red">{{ form_obj.password.errors.0 }}</span>#}
+{#        <br>#}
+{#        {{ form_obj.chekme.label }}#}
+{#        {{ form_obj.chekme }}#}
+{#    </p>#}
+{#    <input type="submit" value="submit">#}
+{#    <a href="{% url 'register' %}">没有账户，去注册>></a>#}
+{##}
+{#</form>#}
+
+
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <form role="form" method="post" action=" " enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">
+                            {{ form_obj.username.label }}
+                        </label>
+                        <label>
+                            {{ form_obj.username }}
+                        </label>
+                        <span style="color: red">{{ form_obj.username.errors.0 }}</span>
+{#                        <input type="text" name="username" class="form-control" id="exampleInputEmail1" />#}
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">
+                            {{ form_obj.password.label }}
+                        </label>
+{#                        <input type="password" name="password" class="form-control" id="exampleInputPassword1" />#}
+                        <label>
+                            {{ form_obj.password }}
+                        </label>
+                        <span style="color: red">{{ form_obj.password.errors.0 }}</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+{#                            <input type="checkbox"  name="remember"/> 记住我#}
+                             {{ form_obj.chekme.label }}
+                        </label>
+                        <label>
+                            {{ form_obj.chekme }}
+                        </label>
+                    </div>
+
+                        {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                                    {{ message }}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+
+                    <button type="submit" class="btn btn-primary">
+                        登录
+                    </button>
+                </form>
+                <a href="{% url 'register' %}">没有账户，去注册>></a>
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}

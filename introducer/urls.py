@@ -11,7 +11,7 @@ urlpatterns = [
     path('register', views.register, name='register'),
     path('login', views.login, name='login'),
 
-    path('testform', views.testForm, name='testForm'),
+    path('loginnew', views.loginByForm, name='loginnew'),
 
     path('my/myprofile', views.myProfile, name='myprofile'),
     path('my/updateInfomation', views.updateInfomation, name='updateInfomation'),

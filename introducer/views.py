@@ -62,6 +62,55 @@ def register(request):
             return render(request, 'introducer/introducerLogin.html')
 
 
+def loginByForm(request):
+    """
+    The procedure that user login in the index page.
+    :param request:
+    :return:
+    """
+    if request.method == 'POST':
+        formObj = forms.LoginForm(request.POST)
+        if formObj.is_valid():
+            data = formObj.clean()
+            username = data.get('username')
+            password = data.get('password')
+            chekme = data.get('chekme')
+            hasLoginingUser = User.objects.filter(username=username).exists()
+            if hasLoginingUser:
+                loginUser = User.objects.get(username=username)
+                if loginUser.password == hashUtils.hashEncrptString(password):
+                    # 1,存储到cookie
+                    # reverse函数直接带视图名
+                    reverseObj = reverse('index')
+                    responseWithCookieObj = redirect(reverseObj)
+                    responseWithCookieObj.set_cookie(
+                        key='username',
+                        value=loginUser.username,
+                        max_age=60 * 30,
+                    )
+                    # 2,存储到session
+                    if chekme:
+                        request.session['username'] = username
+                        request.session['userid'] = loginUser.id
+                        request.session.set_expiry(60 * 60 * 24 * 1)
+                    return redirect(reverse('index'))
+                else:
+                    messages.add_message(request, messages.INFO, "Password is wrong.")
+                    formObj = forms.LoginForm(request.POST)
+                    return render(request, 'introducer/introducerLoginNew.html', {"form_obj": formObj})
+            else:
+                messages.add_message(request, messages.INFO,
+                                     "Your username has not registered,please register before loginin.")
+                formObj = forms.LoginForm(request.POST)
+                return render(request, 'introducer/introducerLoginNew.html', {"form_obj": formObj})
+        else:
+            error = formObj.errors
+            return render(request, 'introducer/introducerLoginNew.html', {"form_obj": formObj, 'error': error})
+    elif request.method == 'GET':
+        formObj = forms.LoginForm()
+        return render(request, 'introducer/introducerLoginNew.html', {"form_obj": formObj})
+
+
 def login(request):
     """
     The procedure that user login in the index page.
@@ -113,55 +162,23 @@ def logout(request):
             loginStatus = request.session.get('username')
             if loginStatus:
                 # 1，删除cookie
-                reverseObj = reverse('login')
+                reverseObj = reverse('loginnew')
                 responseWithCookieObj = redirect(reverseObj)
                 responseWithCookieObj.delete_cookie('username')
                 # 2，删除session
                 request.session.flush()
                 return responseWithCookieObj
             else:
-                return render(request, 'introducer/introducerLogin.html')
+                # return render(request, 'introducer/introducerLoginNew.html')
+                return redirect(reverse('loginnew'))
         except Exception as error:
-            return render(request, 'introducer/introducerLogin.html')
+            return redirect(reverse('loginnew'))
+            # return render(request, 'introducer/introducerLogin.html')
 
 
-# todo 1
-def testForm(request):
-    if request.method == 'POST':
-        formObj = forms.LoginForm(request.POST)
-        if formObj.is_valid():
-            data = formObj.clean()
-            username = data.get('username')
-            password = data.get('password')
-            chekme = data.get('chekme')
-            hasLoginingUser = User.objects.filter(username=username).exists()
-            if hasLoginingUser:
-                loginUser = User.objects.get(username=username)
-                if loginUser.password == hashUtils.hashEncrptString(password):
-                    # 1,存储到cookie
-                    # reverse函数直接带视图名
-                    reverseObj = reverse('index')
-                    responseWithCookieObj = redirect(reverseObj)
-                    responseWithCookieObj.set_cookie(
-                        key='username',
-                        value=loginUser.username,
-                        max_age=60 * 30,
-                    )
-                    # 2,存储到session
-                    if chekme:
-                        request.session['username'] = username
-                        request.session['userid'] = loginUser.id
-                        request.session.set_expiry(60 * 60 * 24 * 1)
-                    return redirect(reverse('index'))
-        else:
-            error = formObj.errors
-            return render(request, 'introducer/index.html', {"form_obj": formObj, 'error': error})
-    elif request.method == 'GET':
-        formObj = forms.LoginForm()
-        return render(request, 'introducer/index.html',  {"form_obj": formObj})
 
-
-# ----------------------------------------------------
+# -------
+# .---------------------------------------------
 # 首页及页面功能（上架房源）
 # ----------------------------------------------------
 # index页翻页
@@ -411,7 +428,7 @@ def test(request):
 
 
 def index1(request):
-    return render(request, "introducer/index.html")
+    return render(request, "introducer/introducerLoginNew.html")
 
 
 # @csrf_protect
