@@ -6,6 +6,7 @@
 
 import hashlib
 
+
 def hashEncrptString(string):
     '''
     :param string: the string need to be encpripted.

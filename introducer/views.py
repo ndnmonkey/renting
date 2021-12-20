@@ -221,6 +221,7 @@ def onShelfHouse(request):
     if request.method == 'GET':
         return render(request, 'introducer/onShelfHouses.html')
     elif request.method == 'POST':
+        # Ajaxtest for zhengjunyong
         # translatequery = request.POST.get('translatequery')
         # print('username:', translatequery)
         # data = {
