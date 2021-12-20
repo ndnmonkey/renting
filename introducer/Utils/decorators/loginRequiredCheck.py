@@ -17,7 +17,7 @@ def check_login(function):
         else:
             # 获取用户当前访问的url，并传递给/user/login/
             next = request.get_full_path()
-            revesedPath = reverse('login')
+            revesedPath = reverse('loginnew')
             print('check_login', revesedPath)
             responseRedict = HttpResponseRedirect(revesedPath + '?next=' + next)
             return responseRedict

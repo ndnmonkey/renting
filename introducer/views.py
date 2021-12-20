@@ -176,9 +176,7 @@ def logout(request):
             # return render(request, 'introducer/introducerLogin.html')
 
 
-
-# -------
-# .---------------------------------------------
+# ----------------------------------------------------
 # 首页及页面功能（上架房源）
 # ----------------------------------------------------
 # index页翻页
@@ -223,7 +221,6 @@ def onShelfHouse(request):
     if request.method == 'GET':
         return render(request, 'introducer/onShelfHouses.html')
     elif request.method == 'POST':
-        # Ajaxtest for zhengjunyong
         # translatequery = request.POST.get('translatequery')
         # print('username:', translatequery)
         # data = {
