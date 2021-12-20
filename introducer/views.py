@@ -16,10 +16,11 @@ from django.http import request, JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
-from .Utils.registerUtils import hashUtils
-from .Utils.decorators import loginRequiredCheck
-from .Utils.baiduTranslate import translatorUtil
-from .models import User, House, Test, Order
+# from .Utils.registerUtils import hashUtils  # Utils.registerUtils import hashUtils
+from introducer.Utils.registerUtils import hashUtils
+from introducer.Utils.decorators import loginRequiredCheck
+from introducer.Utils.baiduTranslate import translatorUtil
+from introducer.models import User, House, Test, Order
 from django.views.generic import ListView
 from introducer.models import House
 from . import forms
