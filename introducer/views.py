@@ -24,7 +24,6 @@ from introducer.models import User, House, Test, Order
 from django.views.generic import ListView
 from introducer.models import House
 from . import forms
-
 # Create your views here.
 
 

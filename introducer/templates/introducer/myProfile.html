@@ -113,7 +113,7 @@
                               {{ house.housename }} | {{ house.community }} | {{ house.price }} | {{ house.surrounding_facilities }} | {{ house.house_type }}
                           </h4>
                           <p>
-                              {{ house.address }} | {{ house.describe }} | <a href="{% url 'houseinfomation' 1  %}">跳转到详情页</a>
+                              {{ house.address }} | {{ house.describe }} | <a href="{% url 'houseinfomation' house.id  %}">跳转到详情页</a>
                           </p>
                         </div>
                       </div>
