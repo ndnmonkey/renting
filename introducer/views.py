@@ -243,7 +243,7 @@ def newonShelfHouse(request):
                     deposit=data.get('deposit'),
                     house_origin_type=data.get('house_origin_type'),
                     rent_type=data.get('rent_type'),
-                    housevideo=request.FILES.get('housevideo'),
+                    housevideo=request.FILES.get('housevideo', default='media/introducer/housevideos/'),
                     foreigtousersubscriber=User.objects.get(username=request.session.get('username')),
                 )
                 print("video", request.FILES.get('housevideo'))

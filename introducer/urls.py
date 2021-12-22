@@ -19,7 +19,7 @@ urlpatterns = [
     path('my/uploadavatar', views.uploadAvatar, name='uploadavatar'),
 
     path('onshelfhouse', views.onShelfHouse, name='onshelfhouse'),
-    path('newonshelfhouse', views.newonShelfHouse, name='newonshelfhouse'),
+    path('house/onshelfhouse', views.newonShelfHouse, name='newonshelfhouse'),
 
     path('houseinfomation/<houseID>', views.houseInfomation, name='houseinfomation'),
     path('addtohouseorder/<houseID>', views.addToHouseOrder, name='addtohouseorder'),

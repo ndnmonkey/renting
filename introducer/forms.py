@@ -68,6 +68,6 @@ class OnShelfHouseForm(forms.Form):
         ('share', '合租'),
         ('full', '整租'),
     ))
-    housevideo = forms.FileField(label='videos:',allow_empty_file=True, required=False)
+    housevideo = forms.FileField(label='videos:', allow_empty_file=True, required=False)
     # fields = ['username', 'password']
 
