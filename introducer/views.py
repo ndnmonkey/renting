@@ -12,6 +12,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
 from django.core.paginator import Paginator
+from django.db.models import Q
 from django.http import request, JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -193,7 +194,9 @@ def index(request):
     """
     if request.method == 'GET':
         datasPerPage = 9
-        housees_list = House.objects.all().order_by('-create_time')
+        housees_list = House.objects.filter(
+            Q(is_delete__startswith='0') & Q(shelf_status='1')
+        ).order_by('-create_time')
         paginator = Paginator(list(housees_list), datasPerPage)
 
         page_number = request.GET.get('page')
@@ -208,6 +211,46 @@ def index(request):
         return render(request, 'introducer/introducerIndex.html', {'page_obj': page_obj})
     elif request.method == 'POST':
         return render(request, 'introducer/introducerIndex.html', locals())
+
+
+@loginRequiredCheck.check_login
+def newonShelfHouse(request):
+    if request.method == 'GET':
+        formObj = forms.OnShelfHouseForm(request.POST)
+        return render(request, 'introducer/onShelfHouse11.html', {'formObj': formObj})
+    elif request.method == 'POST':
+        formObj = forms.OnShelfHouseForm(request.POST)
+        if formObj.is_valid():
+            data = formObj.clean()
+            try:
+                House.objects.create(
+                    housename=data.get('housename'),
+                    community= data.get('community'),
+                    price=data.get('price'),
+                    housearea=data.get('housearea'),
+                    floor=data.get('floor'),
+                    building_age=data.get('building_age'),
+                    house_type=data.get('house_type'),
+                    address=data.get('address'),
+                    surrounding_facilities=data.get('surrounding_facilities'),
+                    subway=data.get('subway'),
+                    washer=data.get('washer'),
+                    heater=data.get('heater'),
+                    refrigerator=data.get('refrigerator'),
+                    air_conditioner=data.get('air_conditioner'),
+                    lift=data.get('lift'),
+                    kitchen_room=data.get('kitchen_room'),
+                    deposit=data.get('deposit'),
+                    house_origin_type=data.get('house_origin_type'),
+                    rent_type=data.get('rent_type'),
+                    housevideo=request.FILES.get('housevideo'),
+                    foreigtousersubscriber=User.objects.get(username=request.session.get('username')),
+                )
+                print("video", request.FILES.get('housevideo'))
+
+            except Exception as error:
+                messages.add_message(request, messages.INFO, 'onShelfHouse, %s' % (error))
+            return render(request, 'introducer/onShelfHouse11.html', {'formObj': formObj})
 
 
 @loginRequiredCheck.check_login

@@ -1,6 +1,6 @@
 {% extends 'introducer/IndexTemplate.html' %} }}
 {% block title %}
-    上架房源
+    我的主页
 {% endblock %}
 
 
@@ -10,68 +10,121 @@
 
 
 {% block main %}
-    <h3>上架房源</h3>
-    <form>
-        <table class="table table-condensed">
-            <caption>房屋信息1</caption>
-            <th>房屋名-housename</th>
-            <th>所在社区community</th>
-            <th>单价-univalent</th>
-            <th>面积-housearea</th>
-            <th>楼层-floor</th>
+    <h3>上架</h3>
 
-            <tr class="success">
-                <td><textarea>describe</textarea></td>
-                <td><textarea>describe</textarea></td>
-                <td><textarea>describe</textarea></td>
-                <td><textarea>describe</textarea></td>
-                <td><textarea>describe</textarea></td>
-            </tr>
-        </table>
+    <form action="" enctype="multipart/form-data" method="post">
+        {{ formObj.housename.label }}
+        {{ formObj.housename }}
         <br>
-
-        <table class="table table-condensed">
-            <caption>房屋信息2</caption>
-            <th>楼龄-building_age</th>
-            <th>房屋类型-house_type</th>
-            <th>地址-address</th>
-            <th>周边设施-surrounding_facilities</th>
-            <th>周边设施-surrounding_facilities</th>
-
-            <tr class="warning">
-                <td><textarea>describe</textarea></td>
-                <td><textarea>describe</textarea></td>
-                <td><textarea>describe</textarea></td>
-                <td><textarea>describe</textarea></td>
-                <td><textarea>describe</textarea></td>
-
-            </tr>
-        </table>
+        {{ formObj.community.label }}
+        {{ formObj.community }}
         <br>
-        <input type="submit" value="提交资料">
+        {{ formObj.price.label }}
+        {{ formObj.price }}
+        <br>
+        {{ formObj.housearea.label }}
+        {{ formObj.housearea }}
+        <br>
+        {{ formObj.floor.label }}
+        {{ formObj.floor }}
+        <br>
+        {{ formObj.building_age.label }}
+        {{ formObj.building_age }}
+        <br>
+        {{ formObj.house_type.label }}
+        {{ formObj.house_type }}
+        <br>
+        {{ formObj.address.label }}
+        {{ formObj.address }}
+        <br>
+        {{ formObj.surrounding_facilities.label }}
+        {{ formObj.surrounding_facilities }}
+        <br>
+        {{ formObj.subway.label }}
+        {{ formObj.subway }}
+        <br>
+        {{ formObj.washer.label }}
+        {{ formObj.washer }}
+        <br>
+        {{ formObj.heater.label }}
+        {{ formObj.heater }}
+        <br>
+        {{ formObj.refrigerator.label }}
+        {{ formObj.refrigerator }}
+        <br>
+        {{ formObj.air_conditioner.label }}
+        {{ formObj.air_conditioner }}
+        <br>
+        {{ formObj.lift.label }}
+        {{ formObj.lift }}
+        <br>
+        {{ formObj.air_conditioner.label }}
+        {{ formObj.air_conditioner }}
+        <br>
+        {{ formObj.kitchen_room.label }}
+        {{ formObj.kitchen_room }}
+        <br>
+        {{ formObj.deposit.label }}
+        {{ formObj.deposit }}
+        <br>
+        {{ formObj.house_origin_type.label }}
+        {{ formObj.house_origin_type }}
+        <br>
+        {{ formObj.rent_type.label }}
+        {{ formObj.rent_type }}
+        <br>
+        {{ formObj.housevideo.label }}
+        {{ formObj.housevideo }}
+        <br>
+        <input type="submit" value="提交">
     </form>
 
 
-    <form method="post" enctype="multipart/form-data" action="">
-        <input type="text" id="translatequery" name="translatequery" value="input">
-        <input type="submit" value="提交" id="ib1">
-    </form>
-    <input type="text" id="i3">
 
-    <script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script>
-        $("#ib1").on("click", function (){
-            $.ajax({
-                url:'{% url 'mymainpage' %}',
-                type:"POST",
-                data:{
-                    "translatequery":$("#translatequery").val()
-                },
-                success: function (data){
-                    $("#i3").val(data.dst)
-                    alert(data.dst)
-                }
-            })
-        })
-    </script>
+
+
+{#    <div class="container-fluid">#}
+{#        <div class="row">#}
+{#        <form role="form" method="post" action="{% url 'onshelfhouse' %}" enctype="multipart/form-data">#}
+{#            <div class="col-md-4">#}
+{#                    <h3>房屋信息1</h3><br>#}
+{#                    <strong>房屋名</strong><br>#}
+{#                    <input type="text" name="housename" class="form-control" id="" />#}
+{#                    <strong>所在社区</strong><br>#}
+{#                    <input type="text" class="form-control" name="community" />#}
+{#                    <strong>价格</strong><br>#}
+{#                    <input type="text" class="form-control" name="price" />#}
+{#                    <strong>面积</strong><br>#}
+{#                    <input type="text" class="form-control" name="housearea" />#}
+{#                    <strong>楼层</strong><br>#}
+{#                    <input type="text" class="form-control" name="floor" />#}
+{##}
+{#            </div>#}
+{#            <div class="col-md-4">#}
+{#            </div>#}
+{#            <div class="col-md-4">#}
+{#                    <h3>房屋信息2</h3><br>#}
+{#                    <strong>楼龄</strong><br>#}
+{#                    <input type="text" name="building_age" class="form-control"  />#}
+{#                    <strong>房屋类型</strong><br>#}
+{#                    <input type="text" name="house_type" class="form-control"  />#}
+{#                    <strong>地址</strong><br>#}
+{#                    <input type="text" name="address" class="form-control"  />#}
+{#                    <strong>周边设施</strong><br>#}
+{#                    <input type="text" name="surrounding_facilities" class="form-control"  />#}
+{#                    <strong>房屋视频</strong><br>#}
+{#                    {% csrf_token %}#}
+{#                    <input type="file" name="housevideo">#}
+{#                    <input type="submit" class="btn btn-primary" value="上传房屋视频" role="button">#}
+{##}
+{#                    <button type="submit" class="btn btn-primary">#}
+{#                        提交房屋信息#}
+{#                    </button>#}
+{#            </div>#}
+{##}
+{#        </form>#}
+{##}
+{#        </div>#}
+{#    </div>#}
+
 {% endblock %}
