@@ -154,7 +154,7 @@
                         <div class="">
                             <p class="list-group-item-text"><h5><span class="label label-info">姓名：</span>{{ userResult.username }}</h5> </p>
                             <p class="list-group-item-text"><h5><span class="label label-info">等级：</span>{{ userResult.user_level }}</h5> </p>
-                            <p class="list-group-item-text"><h5><span class="label label-info">个性签名：</span><br><q>{{ userResult.signature }}</q></h5></p>
+                            <p class="list-group-item-text"><h5><span class="label label-info">签名：</span><q>{{ userResult.signature }}</q></h5></p>
                         </div>
 
                         <p>
@@ -167,7 +167,6 @@
                   <div class="col-sm-4 col-md-6">
                     <div class="thumbnail">
                        {% if  isDefaultAvatat %}
-                           {{ isDefaultAvatat }}123
                           <a href="#" class="thumbnail">
                             <img src="{{ userResult.avatar.url }}" width="130" height="130" alt="...">
                           </a>

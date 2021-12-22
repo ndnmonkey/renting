@@ -16,13 +16,12 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="row">
-
                     {% for contact in page_obj %}
                         <div class="col-md-4">
                             <div class="card">
                                 <video  class="card-img-top" width="320" height="320" controls >
                                       <source src="movie.ogg" type="video/ogg">
-                                      <source src="/media/media/introducer/housevideos/video.mp4"  type="video/mp4">
+{#                                      <source src="/media/media/introducer/housevideos/video.mp4"  type="video/mp4">#}
                                       <source src="{{ contact.housevideo.url }}"  type="video/mp4">
                                       <source src="movie.webm" type="video/webm">
                                       <object data="movie.mp4" width="320" height="240">

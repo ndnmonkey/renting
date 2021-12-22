@@ -193,7 +193,7 @@ def index(request):
     """
     if request.method == 'GET':
         datasPerPage = 9
-        housees_list = House.objects.all()
+        housees_list = House.objects.all().order_by('-create_time')
         paginator = Paginator(list(housees_list), datasPerPage)
 
         page_number = request.GET.get('page')

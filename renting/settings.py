@@ -23,7 +23,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # 密码最短长度
-MinlenthOfPwd = 5
+MinlenthOfPwd = 1
 # ---------------------------------------
 
 
