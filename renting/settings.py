@@ -16,9 +16,16 @@ import os
 from django.urls import reverse
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+# ---------------------------------------
+# 用户自定义配置
+# 媒体文件存放目录
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# 密码最短长度
+MinlenthOfPwd = 5
+# ---------------------------------------
+
 
 # The avatar format that is allowed to be uploaded
 ALLOW_AVTAR_FORMAT = ['jpg', 'jpeg', 'png', 'ico']

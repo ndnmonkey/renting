@@ -9,7 +9,6 @@ from . import views
 
 urlpatterns = [
     path('register', views.register, name='register'),
-    path('registernew', views.registerByForm, name='registernew'),
     path('login', views.login, name='login'),
     path('loginnew', views.loginByForm, name='loginnew'),
 
