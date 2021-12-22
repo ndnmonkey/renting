@@ -30,6 +30,38 @@ from . import forms
 # ----------------------------------------------------
 # 注册、登录、 登出
 # ----------------------------------------------------
+def registerByForm(request):
+    """
+    Getting username and password from register page, then do something about register checking.
+    :param request:
+    :return:
+    """
+    if request.method == 'GET':
+        return render(request, 'introducer/introducerRegister.html')
+    elif request.method == 'POST':
+        username = str(request.POST.get('username')).strip()
+        firstPassword = str(request.POST.get('firstpassword'))
+        repeatPassword = str(request.POST.get('repeatpassword'))
+        hasUsername = User.objects.filter(username=username)
+        # 是否存在该用户,不存在则注册，存在则跳转登录页
+        if not hasUsername:
+            # 密码相同可以注册
+            if firstPassword == repeatPassword:
+                encriptedPassword = hashUtils.hashEncrptString(repeatPassword)
+                try:
+                    # registeringUser = User.objects.create(username=username, password=encriptedPassword)
+                    User.objects.create(username=username, password=encriptedPassword)
+                except Exception as error:
+                    messages.add_message(request, messages.INFO, 'Registering, %s'%(error))
+
+                return render(request, 'introducer/introducerLogin.html')
+            else:
+                messages.add_message(request, messages.INFO, 'please input the same password, then make sure they are not null.')
+                return render(request, 'introducer/introducerRegister.html')
+        else:
+            return render(request, 'introducer/introducerLogin.html')
+
+
 def register(request):
     """
     Getting username and password from register page, then do something about register checking.
