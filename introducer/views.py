@@ -293,7 +293,6 @@ def onShelfHouse(request):
 
         except Exception as error:
             messages.add_message(request, messages.INFO, 'onShelfHouse, %s' % (error))
-
         return render(request, 'introducer/onShelfHouses.html')
 
 
@@ -307,9 +306,7 @@ def houseInfomation(request, houseID):
     """
     if request.method == "GET":
         houseResult = House.objects.filter(id=houseID)
-
         return render(request, "introducer/houseInfomation.html", locals())
-
     elif request.method == "POST":
         pass
 
@@ -325,15 +322,24 @@ def addToHouseOrder(request, houseID):
     """
     if request.method == "GET":
         houseObj = House.objects.get(id=houseID)
-        Order.objects.create(
-            house_id=houseID,
-            order_amount=houseObj.price,
-            publisher_name=houseObj.foreigtousersubscriber.username,
-            orderStatus='0',
-            subscriber_id=request.session.get('userid'),
-            publisher_id=houseObj.id,
-        )
-        return redirect(reverse("order"))
+        BoolIfOrder = Order.objects.filter(
+                            Q(house_id=houseID)
+                          & Q(subscriber_id=request.session.get('userid'))
+                          & Q(publisher_id=houseObj.id)
+                        ).exists()
+        print(BoolIfOrder)
+        if not BoolIfOrder:
+            Order.objects.create(
+                house_id=houseID,
+                order_amount=houseObj.price,
+                publisher_name=houseObj.foreigtousersubscriber.username,
+                orderStatus='0',
+                subscriber_id=request.session.get('userid'),
+                publisher_id=houseObj.id,
+            )
+            return redirect(reverse("order"))
+        else:
+            return redirect(reverse("order"))
     elif request.method == "POST":
         pass
 
