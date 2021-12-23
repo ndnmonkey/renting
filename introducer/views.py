@@ -217,10 +217,11 @@ def index(request):
 def newonShelfHouse(request):
     if request.method == 'GET':
         formObj = forms.OnShelfHouseForm(request.POST)
+        request.session['ifAllowToSubmitHouseInfo'] = True
         return render(request, 'introducer/onShelfHousenew.html', {'formObj': formObj})
     elif request.method == 'POST':
         formObj = forms.OnShelfHouseForm(request.POST)
-        if formObj.is_valid():
+        if formObj.is_valid() and request.session.get('ifAllowToSubmitHouseInfo'):
             data = formObj.clean()
             try:
                 House.objects.create(
@@ -247,9 +248,11 @@ def newonShelfHouse(request):
                     foreigtousersubscriber=User.objects.get(username=request.session.get('username')),
                 )
                 print("video", request.FILES.get('housevideo'))
-
+                request.session['ifAllowToSubmitHouseInfo'] = False
             except Exception as error:
                 messages.add_message(request, messages.INFO, 'onShelfHouse, %s' % (error))
+            return render(request, 'introducer/onShelfHousenew.html', {'formObj': formObj})
+        else:
             return render(request, 'introducer/onShelfHousenew.html', {'formObj': formObj})
 
 

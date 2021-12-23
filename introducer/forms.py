@@ -57,7 +57,7 @@ class OnShelfHouseForm(forms.Form):
     air_conditioner = forms.BooleanField(label='空调：', required=False)
     lift = forms.BooleanField(label='电梯：', required=False)
     kitchen_room = forms.BooleanField(label='厨房：', required=False)
-    deposit = forms.BooleanField(label='押金：', required=True)
+    deposit = forms.BooleanField(label='押金：', required=False)
     house_origin_type = forms.ChoiceField(label='房源类型：', required=True, initial='transfer', choices=(
         ('direct', '直租'),
         ('transfer', '转租'),
