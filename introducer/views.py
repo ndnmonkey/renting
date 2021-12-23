@@ -195,8 +195,8 @@ def index(request):
     if request.method == 'GET':
         datasPerPage = 9
         housees_list = House.objects.filter(
-            Q(is_delete__startswith='0') & Q(shelf_status='1')
-        ).order_by('-create_time')
+                                        Q(is_delete__startswith='0') & Q(shelf_status='1')
+                                    ).order_by('-create_time')
         paginator = Paginator(list(housees_list), datasPerPage)
 
         page_number = request.GET.get('page')
@@ -217,7 +217,7 @@ def index(request):
 def newonShelfHouse(request):
     if request.method == 'GET':
         formObj = forms.OnShelfHouseForm(request.POST)
-        return render(request, 'introducer/onShelfHouse11.html', {'formObj': formObj})
+        return render(request, 'introducer/onShelfHousenew.html', {'formObj': formObj})
     elif request.method == 'POST':
         formObj = forms.OnShelfHouseForm(request.POST)
         if formObj.is_valid():
@@ -250,7 +250,7 @@ def newonShelfHouse(request):
 
             except Exception as error:
                 messages.add_message(request, messages.INFO, 'onShelfHouse, %s' % (error))
-            return render(request, 'introducer/onShelfHouse11.html', {'formObj': formObj})
+            return render(request, 'introducer/onShelfHousenew.html', {'formObj': formObj})
 
 
 @loginRequiredCheck.check_login

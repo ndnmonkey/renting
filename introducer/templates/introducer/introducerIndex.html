@@ -33,7 +33,13 @@
                                     {{ contact.housename|upper }} {{ contact.id }}
                                 </h5>
                                 <p class="card-text">
-                                    {{ contact.community|upper }}--Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                                    {{ contact.community }} {{ contact.describe }} {{ contact.price }}
+                                    {{ contact.housearea }} {{ contact.address }} {{ contact.floor }}
+                                    {{ contact.building_age }} {{ contact.house_type }} {{ contact.surrounding_facilities }}
+                                    {{ contact.create_time }} {{ contact.update_time }} {{ contact.subway }}
+                                    {{ contact.washer }} {{ contact.heater }} {{ contact.refrigerator }}
+                                    {{ contact.air_conditioner }} {{ contact.lift }} {{ contact.kitchen_room }}
+                                    {{ contact.deposit }} {{ contact.house_origin_type }} {{ contact.rent_type }}
                                 </p>
                                 <p>
 {#                                        <a class="btn btn-primary" href="#">订购</a>#}
