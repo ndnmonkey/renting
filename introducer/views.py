@@ -324,10 +324,13 @@ def addToHouseOrder(request, houseID):
         houseObj = House.objects.get(id=houseID)
         Order.objects.create(
             house_id=houseID,
+            order_amount=houseObj.price,
+            publisher_name=houseObj.foreigtousersubscriber.username,
+            orderStatus='0',
             subscriber_id=request.session.get('userid'),
             publisher_id=houseObj.id,
         )
-        return HttpResponse(houseID)
+        return redirect(reverse("order"))
     elif request.method == "POST":
         pass
 

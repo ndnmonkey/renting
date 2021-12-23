@@ -20,8 +20,10 @@
                         房子id:{{ order.house_id }}
                         订单:{{ order.order_amount }}
                         订阅者:{{ order.subscriber_id }}
-                        发布者:{{ order.publisher_id }}
-                        时间:{{ order.create_time }}
+                        发布者:{{ order.publisher_name }}
+                        订单状态：{{ order.orderStatus }}
+                        创建时间:{{ order.create_time }}
+                        更新时间:{{ order.update_time }}
                     </pre>
                 {% endfor %}
 
