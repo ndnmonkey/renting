@@ -19,15 +19,18 @@ class LoginForm(forms.Form):
             "invalid": "格式错误",
             "min_length": "用户名最短2位"
         })
-    password = forms.CharField(label='密码：', strip=True, max_length=50, min_length=settings.MinlenthOfPwd, required=True,  error_messages={
+    password = forms.CharField(label='密码：', strip=True, max_length=50, min_length=settings.MinlenthOfPwd,
+        required=True, error_messages={
             "required": "密码必填",
             "invalid": "格式错误",
             "min_length": "用户名最短{}位".format(settings.MinlenthOfPwd)
         })
-    chekme = forms.fields.CharField(
-        label='记住我',
-        widget=forms.widgets.CheckboxInput
-    )
+    # chekme = forms.fields.CharField(
+    #     label='记住我',
+    #     widget=forms.widgets.CheckboxInput
+    # )
+    chekme = forms.BooleanField(label='记住我：', required=False)
+
     # fields = ['username', 'password']
 
 
@@ -70,4 +73,5 @@ class OnShelfHouseForm(forms.Form):
     ))
     housevideo = forms.FileField(label='videos:', allow_empty_file=True, required=False)
     # fields = ['username', 'password']
+
 
