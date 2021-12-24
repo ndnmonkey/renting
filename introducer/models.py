@@ -113,8 +113,9 @@ class House(models.Model):
 
 class Order(models.Model):
     # 房屋id，下单人id，金额，
+    # foreigtousersubscriber = models.ForeignKey(House, on_delete=models.CASCADE, default=1)
     house_id = models.CharField('house id', default=1, max_length=10)
-    order_amount = models.DecimalField('order amount', default=0.00,max_digits=15, decimal_places=2)
+    order_amount = models.DecimalField('order amount', default=0.00, max_digits=15, decimal_places=2)
     subscriber_id = models.CharField('subscriber id', default=1, max_length=10)
     publisher_id = models.CharField('publisher id', default=2, max_length=15)
     publisher_name = models.CharField('publisher name', default='publisher name', max_length=30)

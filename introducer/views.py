@@ -412,6 +412,11 @@ def updateInfomation(request):
 
 
 def myOrder(request):
+    """
+    我的订单页
+    :param request:
+    :return:
+    """
     if request.method == 'GET':
         currentUserId = request.session.get('userid')
         orderQuerySet = Order.objects.filter(subscriber_id=currentUserId)
@@ -419,6 +424,18 @@ def myOrder(request):
     elif request.method == "POST":
         pass
 
+
+def myHouse(request):
+    """
+    上架/下架我的房子
+    :param request:
+    :return:
+    """
+    if request.method == 'GET':
+
+        return render(request, 'introducer/introducerHouse.html')
+    elif request.method == 'POST':
+        pass
 
 @csrf_exempt
 def uploadAvatar(request):
