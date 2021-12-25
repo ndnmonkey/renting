@@ -438,24 +438,27 @@ def myHouse(request):
     """
     if request.method == 'GET':
         CurrentUserId = request.session.get('userid')
-        print(CurrentUserId)
         houseInfoObj = House.objects.filter(foreigtousersubscriber=CurrentUserId)
         return render(request, 'introducer/introducerHouse.html', locals())
     elif request.method == 'POST':
         pass
 
 
-def transferHouseStatus(request, houseID):
+def transferHouseStatus(request, houseID, onShelfStatus):
     """
     改变房子的上下架状态以及是否删除房子
     :param request:
     :return:
     """
     if request.method == 'GET':
-        print(houseID, onShelfHouse)
-        return render(request, 'introducer/introducerIndex.html')
+        reverseShelfStatus = 0 if onShelfStatus == 'True' else 1
+        houseTranseferObj = House.objects.get(id=houseID)
+        houseTranseferObj.shelf_status = reverseShelfStatus
+        houseTranseferObj.save()
+        return redirect(reverse('myHouse'))
     elif request.method == 'POST':
-        pass
+        print('POST', houseID, onShelfStatus)
+        return render(request, 'introducer/introducerIndex.html')
 
 
 @csrf_exempt

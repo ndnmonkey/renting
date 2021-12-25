@@ -75,3 +75,6 @@ class OnShelfHouseForm(forms.Form):
     # fields = ['username', 'password']
 
 
+# my/myhouse页面更新上下架/删除
+class transferShlefStatus((forms.Form)):
+    button = forms.BooleanField(label='sss', required=False)

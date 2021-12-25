@@ -23,10 +23,11 @@
                               {{ house.housename }} | {{ house.community }} | {{ house.price }} | {{ house.surrounding_facilities }} | {{ house.house_type }}
                             </h4>
                             <p>
-                              {{ house.address }} | {{ house.describe }} |
-                                <a href="{% url 'transferhousestatus' house.id %}  ">sdfds--{{ house.id  }}
-{#                                    <input type="submit" value="{{ house.shelf_status }}">#}
-                                </a>
+                                 {{ house.address }} | {{ house.describe }} |
+                                 <a href="{% url 'transferhousestatus' house.id house.shelf_status %}  ">
+                                    <input type="submit" value="{{ house.shelf_status }}">
+                                 </a>
+
                             </p>
                         </div>
                     </div>
