@@ -215,6 +215,11 @@ def index(request):
 
 @loginRequiredCheck.check_login
 def newonShelfHouse(request):
+    """
+    新上架房屋信息接口
+    :param request:
+    :return:
+    """
     if request.method == 'GET':
         formObj = forms.OnShelfHouseForm(request.POST)
         request.session['ifAllowToSubmitHouseInfo'] = True
@@ -427,15 +432,31 @@ def myOrder(request):
 
 def myHouse(request):
     """
-    上架/下架我的房子
+    展示用户发布的房子，供用户自己根据页面操作上下架，删除房子
     :param request:
     :return:
     """
     if request.method == 'GET':
-
-        return render(request, 'introducer/introducerHouse.html')
+        CurrentUserId = request.session.get('userid')
+        print(CurrentUserId)
+        houseInfoObj = House.objects.filter(foreigtousersubscriber=CurrentUserId)
+        return render(request, 'introducer/introducerHouse.html', locals())
     elif request.method == 'POST':
         pass
+
+
+def transferHouseStatus(request, houseID):
+    """
+    改变房子的上下架状态以及是否删除房子
+    :param request:
+    :return:
+    """
+    if request.method == 'GET':
+        print(houseID, onShelfHouse)
+        return render(request, 'introducer/introducerIndex.html')
+    elif request.method == 'POST':
+        pass
+
 
 @csrf_exempt
 def uploadAvatar(request):
