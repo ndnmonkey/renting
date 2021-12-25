@@ -444,16 +444,19 @@ def myHouse(request):
         pass
 
 
-def transferHouseStatus(request, houseID, onShelfStatus):
+def transferHouseStatus(request, houseID, onShelfStatus, is_delete):
     """
-    改变房子的上下架状态以及是否删除房子
+    改变房子的上下架状态以，及是否删除房子
     :param request:
     :return:
     """
     if request.method == 'GET':
+        # 若上架状态则改为下架，下架则改为上架
         reverseShelfStatus = 0 if onShelfStatus == 'True' else 1
         houseTranseferObj = House.objects.get(id=houseID)
         houseTranseferObj.shelf_status = reverseShelfStatus
+        # 若
+        houseTranseferObj.is_delete = (1 if is_delete == 'False' else 0)
         houseTranseferObj.save()
         return redirect(reverse('myHouse'))
     elif request.method == 'POST':

@@ -24,8 +24,9 @@
                             </h4>
                             <p>
                                  {{ house.address }} | {{ house.describe }} |
-                                 <a href="{% url 'transferhousestatus' house.id house.shelf_status %}  ">
-                                    <input type="submit" value="{{ house.shelf_status }}">
+                                 <a href="{% url 'transferhousestatus' house.id house.shelf_status house.is_delete %}  ">
+                                    <input type="submit" value="上架状态：{{ house.shelf_status }}">
+                                    <input type="submit" value="删除状态：{{ house.is_delete }}">
                                  </a>
 
                             </p>
