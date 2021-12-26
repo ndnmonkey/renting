@@ -81,19 +81,30 @@ def loginByForm(request):
                 if loginUser.password == hashUtils.hashEncrptString(password):
                     # 1,存储到cookie
                     # reverse函数直接带视图名
-                    reverseObj = reverse('index')
-                    responseWithCookieObj = redirect(reverseObj)
+                    responseWithCookieObj = redirect(reverse('index'))
                     responseWithCookieObj.set_cookie(
                         key='username',
                         value=loginUser.username,
-                        max_age=60 * 30,
+                        max_age=60 * 60 * 24 * 1,
                     )
+                    request.session['username'] = username
+                    request.session['userid'] = loginUser.id
+                    request.session.set_expiry(60 * 60 * 24 * 1)
+                    print('cook1', request.COOKIES.get("username"))
+                    print('cook2', request.get_signed_cookie('username'))
                     # 2,存储到session
-                    if chekme:
-                        request.session['username'] = username
-                        request.session['userid'] = loginUser.id
-                        request.session.set_expiry(60 * 60 * 24 * 1)
-                    return redirect(reverse('index'))
+                    # if chekme:
+                    #     reverseObj = reverse('index')
+                    #     responseWithCookieObj = redirect(reverseObj)
+                    #     responseWithCookieObj.set_cookie(
+                    #         key='username',
+                    #         value=loginUser.username,
+                    #         max_age=60 * 30,
+                    #     )
+                    #     print('username', request.COOKIES['username'])
+                    #     return reverseObj
+                    # return redirect(reverse('index'))
+                    return responseWithCookieObj
                 else:
                     messages.add_message(request, messages.INFO, "Password is wrong.")
                     formObj = forms.LoginForm(request.POST)
