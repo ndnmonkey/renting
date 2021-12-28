@@ -16,15 +16,17 @@
             <div class="col-md-8">
 
                 {% for order in orderQuerySet %}
-                    <pre>
-                        房子id:{{ order.house_id }}
-                        订单:{{ order.order_amount }}
-                        订阅者:{{ order.subscriber_id }}
-                        发布者:{{ order.publisher_name }}
-                        订单状态：{{ order.orderStatus }}
-                        创建时间:{{ order.create_time }}
-                        更新时间:{{ order.update_time }}
-                    </pre>
+                    <div class="list-group">
+                      <a href="#" class="list-group-item active">
+                        <h4 class="list-group-item-heading">房子id:{{ order.house_id }}</h4>
+                        <p class="list-group-item-text">订单:{{ order.order_amount }}</p>
+                        <p class="list-group-item-text">订阅者:{{ order.subscriber_id }}</p>
+                        <p class="list-group-item-text">发布者:{{ order.publisher_name }}</p>
+                        <p class="list-group-item-text">订单状态：{{ order.orderStatus }}</p>
+                        <p class="list-group-item-text">创建时间:{{ order.create_time }}</p>
+                        <p class="list-group-item-text">订更新时间:{{ order.update_time }}</p>
+                      </a>
+                    </div>
                 {% endfor %}
 
 
@@ -37,97 +39,20 @@
                 <p>
                     <a class="btn" href="#">View details »</a>
                 </p>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>
-                            #
-                        </th>
-                        <th>
-                            Product
-                        </th>
-                        <th>
-                            Payment Taken
-                        </th>
-                        <th>
-                            Status
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>
-                            1
-                        </td>
-                        <td>
-                            TB - Monthly
-                        </td>
-                        <td>
-                            01/04/2012
-                        </td>
-                        <td>
-                            Default
-                        </td>
-                    </tr>
-                    <tr class="table-active">
-                        <td>
-                            1
-                        </td>
-                        <td>
-                            TB - Monthly
-                        </td>
-                        <td>
-                            01/04/2012
-                        </td>
-                        <td>
-                            Approved
-                        </td>
-                    </tr>
-                    <tr class="table-success">
-                        <td>
-                            2
-                        </td>
-                        <td>
-                            TB - Monthly
-                        </td>
-                        <td>
-                            02/04/2012
-                        </td>
-                        <td>
-                            Declined
-                        </td>
-                    </tr>
-                    <tr class="table-warning">
-                        <td>
-                            3
-                        </td>
-                        <td>
-                            TB - Monthly
-                        </td>
-                        <td>
-                            03/04/2012
-                        </td>
-                        <td>
-                            Pending
-                        </td>
-                    </tr>
-                    <tr class="table-danger">
-                        <td>
-                            4
-                        </td>
-                        <td>
-                            TB - Monthly
-                        </td>
-                        <td>
-                            04/04/2012
-                        </td>
-                        <td>
-                            Call in to confirm
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+
+
+
+            <!-- 16:9 aspect ratio -->
+                <div class="embed-responsive embed-responsive-16by9">
+                  <iframe class="embed-responsive-item" src="..."></iframe>
+                </div>
+
+
             </div>
+
+
+
+
             <div class="col-md-4">
                 <img alt="Bootstrap Image Preview" width="140" height="140" src="/media/introducer/profile/default1.jpg" />
                 <div class="page-header">

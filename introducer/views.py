@@ -86,12 +86,12 @@ def loginByForm(request):
                         key='username',
                         value=loginUser.username,
                         max_age=60 * 60 * 24 * 1,
+                        path = '/'
                     )
                     request.session['username'] = username
                     request.session['userid'] = loginUser.id
                     request.session.set_expiry(60 * 60 * 24 * 1)
                     print('cook1', request.COOKIES.get("username"))
-                    print('cook2', request.get_signed_cookie('username'))
                     # 2,存储到session
                     # if chekme:
                     #     reverseObj = reverse('index')
